@@ -1,17 +1,18 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
+
 class AerodynamicsCalculation {
 public:
-    double CL, p = 1.2, v, T, W, L, D, S, g = 9.8, CT, w, CD, m;
+    double CL, p = 1.2, v, T = 0, W = 0, L, D, S, g = 9.8, CT, w, CD, m;
     char self;
+
     void run() {
         cout << "What do you want to find? (W, T, D, L): ";
         cin >> self;
 
         if (self == 'L') {
             cout << "Enter the data:\n";
-            cout << "Enter lift coefficient (CL), velocity (V), air density (p), and area (S)\n";
 
             cout << "CL: ";
             cin >> CL;
@@ -31,8 +32,6 @@ public:
         }
 
         else if (self == 'T') {
-            cout << "Enter thrust coefficient (CT) and propeller speed (w):\n";
-
             cout << "CT: ";
             cin >> CT;
 
@@ -45,9 +44,6 @@ public:
         }
 
         else if (self == 'D') {
-            cout << "Enter the data:\n";
-            cout << "Enter drag coefficient (CD), velocity (V), air density (p), and area (S)\n";
-
             cout << "CD: ";
             cin >> CD;
 
@@ -66,8 +62,6 @@ public:
         }
 
         else if (self == 'W') {
-            cout << "Enter mass of UAV:\n";
-
             cout << "m: ";
             cin >> m;
 
@@ -78,6 +72,18 @@ public:
 
         else {
             cout << "Invalid input!" << endl;
+        }
+
+        if (T > 0 && W > 0) {
+            if (T > W) {
+                cout << "UAV takes off!" << endl;
+            }
+            else if (T == W) {
+                cout << "UAV hovers!" << endl;
+            }
+            else {
+                cout << "UAV falls!" << endl;
+            }
         }
     }
 };
